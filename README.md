@@ -7,6 +7,18 @@
 4. 通过"X-User-Id"传递user_id
 5. 设计一个控制台管理流量层和实验（登录使用http auth_basic）
 
+
+## 启动项目
+> Makefile中已经将各个任务综合起来，单独运行一下make命令就可以完成整个流程
+```
+make
+```
+1. 首先build docker镜像
+2. 然后编译控制台页面
+3. 使用docker-compose启动项目
+4. 运行Makefile中的init-redis将redis-lua脚本load进去
+
+
 ## 接口
 1. 获取变量接口
 ```
@@ -27,4 +39,13 @@ curl "localhost:8011/ab/track?name=var1" -H 'X-Env: dev' -H 'X-User-Id: 0001' -d
 
 {"msg":"success","code":0}
 ```
+
+## demo
+1. 创建一个名字叫layer1的流量层
+![image](https://user-images.githubusercontent.com/1826685/96210922-92180400-0fa5-11eb-9b35-6d818ec3f820.png)
+2. 在这个流量曾创建一个名字叫test1的实验
+3. 给这个实验创建两个版本(value=0/1)分别分配50%的流量
+4. 给这个实验创建一个叫做target1的指标
+![image](https://user-images.githubusercontent.com/1826685/96210953-a2c87a00-0fa5-11eb-988e-de6645b9c852.png)
+![image](https://user-images.githubusercontent.com/1826685/96210985-b542b380-0fa5-11eb-8183-6118a49cd3ba.png)
 

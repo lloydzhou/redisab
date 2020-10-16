@@ -1,9 +1,16 @@
+all: init-redis
 
 build:
 	docker build -t ab -f docker/Dockerfile docker
 	docker build -t ab-crontab -f docker/Dockerfile.crontab docker
 
-init-redis:
+build-js:
+	yarn install && yarn run build
+
+start: build build-js
+	docker-compose up -d
+
+init-redis: start
 	docker-compose exec redis redis-cli script load "$$(cat lua/redis-aggregate.lua)"
 	docker-compose exec redis redis-cli script load "$$(cat lua/add-layer.lua)"
 	docker-compose exec redis redis-cli script load "$$(cat lua/add-test.lua)"
