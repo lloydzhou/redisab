@@ -7,6 +7,18 @@
 4. 通过"X-User-Id"传递user_id
 5. 设计一个控制台管理流量层和实验（登录使用http auth_basic）
 
+### murmurhash2
+```
+  local ffi = require "ffi"
+  ffi.cdef[[
+    typedef unsigned char u_char;
+    uint32_t ngx_murmur_hash2(u_char *data, size_t len);
+  ]]
+  murmurhash2 = function(value)
+    return tonumber(ffi.C.ngx_murmur_hash2(ffi.cast('uint8_t *', value), #value))
+  end
+```
+
 
 ## 启动项目
 > Makefile中已经将各个任务综合起来，单独运行一下make命令就可以完成整个流程
