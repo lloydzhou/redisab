@@ -7,7 +7,10 @@ build:
 build-js:
 	yarn install && yarn run build
 
-start: build build-js
+htpasswd: ./htpasswd
+	htpasswd -bc htpasswd redisab redisab
+
+start: build build-js htpasswd
 	docker-compose up -d
 
 init-redis: start
