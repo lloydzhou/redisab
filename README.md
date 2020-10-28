@@ -53,6 +53,7 @@ curl "localhost:8011/ab/track?name=var1" -H 'X-Env: dev' -H 'X-User-Id: 0001' -d
 ```
 
 ## demo
+> 管理后台(localhost:8011)用户名密码: redisab/redisab
 1. 创建一个名字叫layer1的流量层
 ![image](https://user-images.githubusercontent.com/1826685/96210922-92180400-0fa5-11eb-9b35-6d818ec3f820.png)
 2. 在这个流量曾创建一个名字叫test1的实验
